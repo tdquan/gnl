@@ -6,7 +6,7 @@
 /*   By: qutrinh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 13:29:38 by qutrinh           #+#    #+#             */
-/*   Updated: 2018/12/01 22:23:59 by qutrinh          ###   ########.fr       */
+/*   Updated: 2018/12/01 23:00:27 by qutrinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,19 @@ int		get_next_line(const int fd, char **line)
 	return (1);
 }
 
-int		main()
+/*int		main(int ac, char **av)
 {
 	char 	**line;
 	int		fd;
 
-	fd = open("queen.txt", O_RDONLY);
-	while (get_next_line(fd, line))
-		printf("%s\n", *line);
-	close(fd);
+	if (ac == 2)
+	{
+		printf("%s\n", av[1]);
+		fd = open("queen.txt", O_RDONLY);
+		while (get_next_line(fd, line))
+			printf("%s\n", *line);
+		close(fd);
+	}
 	return (0);
 }
+*/
