@@ -6,7 +6,7 @@
 /*   By: qutrinh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 13:29:38 by qutrinh           #+#    #+#             */
-/*   Updated: 2018/12/01 23:00:27 by qutrinh          ###   ########.fr       */
+/*   Updated: 2018/12/02 17:00:15 by qutrinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int		copy_line(char *str, char **line)
 	int				i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] == '\n')
-			break;
+		if (str[i] == '\n')
+			break ;
 		i++;
 	}
 	*line = ft_strnew(i);
@@ -64,21 +64,21 @@ int		get_next_line(const int fd, char **line)
 {
 	static t_list	*files;
 	t_list			*current;
-	char			tmp[BUFF_SIZE + 1];
+	char			tmp1[BUFF_SIZE + 1];
 	char			*tmp2;
 	int				i;
 
-	if ((fd < 0 || line == NULL || read(fd, tmp, 0) < 0))
+	if ((fd < 0 || line == NULL || read(fd, tmp1, 0) < 0))
 		return (-1);
 	current = get_current_file(fd, &files);
-	while ((i = read(fd, tmp, BUFF_SIZE)))
+	while ((i = read(fd, tmp1, BUFF_SIZE)))
 	{
-		tmp[i] = 0;
+		tmp1[i] = 0;
 		tmp2 = current->content;
-		current->content = ft_strjoin(current->content, tmp);
+		current->content = ft_strjoin(current->content, tmp1);
 		ft_strdel(&tmp2);
-		if (ft_strchr(tmp, '\n'))
-			break;
+		if (ft_strchr(tmp1, '\n'))
+			break ;
 	}
 	if (i < BUFF_SIZE && !ft_strlen(current->content))
 		return (0);
@@ -86,20 +86,3 @@ int		get_next_line(const int fd, char **line)
 	current = del_str(current, i);
 	return (1);
 }
-
-/*int		main(int ac, char **av)
-{
-	char 	**line;
-	int		fd;
-
-	if (ac == 2)
-	{
-		printf("%s\n", av[1]);
-		fd = open("queen.txt", O_RDONLY);
-		while (get_next_line(fd, line))
-			printf("%s\n", *line);
-		close(fd);
-	}
-	return (0);
-}
-*/
