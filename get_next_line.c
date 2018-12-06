@@ -6,7 +6,7 @@
 /*   By: qutrinh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 13:29:38 by qutrinh           #+#    #+#             */
-/*   Updated: 2018/12/02 19:27:44 by qutrinh          ###   ########.fr       */
+/*   Updated: 2018/12/06 15:20:54 by qutrinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,14 @@ int		copy_line(char *str, char **line)
 
 t_list	*del_str(t_list *current, int i)
 {
+	char			*leak;
+
 	if (i < (int)ft_strlen(current->content))
+	{
+		leak = current->content;
 		current->content = ft_strdup(current->content + i + 1);
+		free(leak);
+	}
 	else
 		ft_strclr(current->content);
 	return (current);
@@ -59,6 +65,7 @@ int		get_next_line(const int fd, char **line)
 	static t_list	*files;
 	t_list			*current;
 	char			tmp[BUFF_SIZE + 1];
+	char			*leak;
 	int				i;
 
 	if ((fd < 0 || line == NULL || read(fd, tmp, 0) < 0))
@@ -67,7 +74,9 @@ int		get_next_line(const int fd, char **line)
 	while ((i = read(fd, tmp, BUFF_SIZE)))
 	{
 		tmp[i] = 0;
+		leak = current->content;
 		current->content = ft_strjoin(current->content, tmp);
+		free(leak);
 		if (ft_strchr(tmp, '\n'))
 			break ;
 	}
