@@ -6,14 +6,14 @@
 /*   By: qutrinh <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 13:26:25 by qutrinh           #+#    #+#             */
-/*   Updated: 2018/12/02 19:29:56 by qutrinh          ###   ########.fr       */
+/*   Updated: 2018/12/06 15:27:40 by qutrinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 42
+# define BUFF_SIZE 50000
 
 # include <stdio.h>
 # include <fcntl.h>
